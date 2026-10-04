@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SampleTest {
 
@@ -53,15 +56,11 @@ public class SampleTest {
     }
     @Test
     public void activityTest() {
+        WebDriverWait wait = new WebDriverWait(driver,5);
         mobileObjects.input.isDisplayed();
         mobileObjects.input.click();
         mobileObjects.input.sendKeys("Netology");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        mobileObjects.activity.isDisplayed();
+        wait.until(ExpectedConditions.textToBePresentInElement(mobileObjects.input,"Netology"));
         mobileObjects.activity.click();
         mobileObjects.textToBeActivity.isDisplayed();
         Assertions.assertEquals("Netology", mobileObjects.textToBeActivity.getText());

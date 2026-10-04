@@ -21,6 +21,6 @@ public class MobileObjects {
     private AppiumDriver driver;
     public MobileObjects(AppiumDriver driver){
         this.driver = driver;
-        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(20)),this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)),this);
     }
 }
